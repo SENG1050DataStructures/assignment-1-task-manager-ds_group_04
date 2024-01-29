@@ -26,7 +26,7 @@ int main(void)
 		printf("Press 3 to Find Task \n");
 		printf("Press 4 to Pelete Tasks \n");
 		printf("Press 5 to Exit \n");
-		printf(">>>");
+		printf(">>>  ");
 
 		// Storing user input into option variable:
 		option = getNum();
@@ -51,6 +51,11 @@ int main(void)
 		else if (option == 5)
 		{
 			return 0;
+		}
+		else
+		{
+			printf("Invalid input. Please type in a valid option.\n");
+			
 		}
 	}
 
