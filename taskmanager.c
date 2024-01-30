@@ -34,6 +34,7 @@ int main(void)
 		if (option == 1)
 		{
 			//Add task function
+			//Olga will be working on it maybe on Wednesday
 			printf("hello");
 		}
 		else if (option == 2)
