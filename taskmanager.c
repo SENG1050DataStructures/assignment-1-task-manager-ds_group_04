@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
 #pragma warning(disable: 4996) 
 
 //Constants:
@@ -8,6 +9,7 @@
 #define MAX_DESCRIPTION_LENGTH 200
 #define ID_FOUND 0
 #define ID_NOT_FOUND_YET 1
+#define NO_VALID_DIGIT -1
 
 //Data types:
 struct Task
@@ -22,6 +24,7 @@ struct Task
 int getNum(void);
 struct Task* addTask(struct Task* head, int inputTaskId, char inputTitle[], char inputDescription[]);
 int deleteTask(struct Task* head, int inputTaskId);
+
 
 int main(void)
 {
@@ -45,13 +48,39 @@ int main(void)
 
 			char title[MAX_TITLE_LENGTH + 1] = { 0 };
 			char description[MAX_DESCRIPTION_LENGTH + 1] = { 0 };
+			int titleId = NO_VALID_DIGIT;
 
-			printf("\nEnter id for task being added\n");
-			printf(">>>  ");
-			int titleId = getNum();
+			while (titleId < 0)
+			{
+				int inputId = 0;
+				printf("\nEnter digital ID for task being added\n");
+				printf(">>>  ");
+				inputId = getNum();
+
+				if (inputId == NO_VALID_DIGIT)
+				{
+					printf("No valid ID was entered.\n");
+				}
+				else
+				{
+					titleId = inputId;
+				}
+
+			}					
+
 			printf("\nEnter title for task being added\n");
 			printf(">>>  ");
+			char fieldName[MAX_TITLE_LENGTH + 1] = { 0 };
 			fgets(title, MAX_TITLE_LENGTH, stdin);
+			if (strcmp(title, "\n") == 0)
+			{
+				strcpy(title, "No title.");
+			}
+			/*
+			if (strcmp(title, "\n") == 0)
+			{
+				strcpy(title, "No description");
+			}
 			if (strlen(title) > 0)
 			{
 				if (title[strlen(title) - 1] == '\n')
@@ -59,16 +88,25 @@ int main(void)
 					title[strlen(title) - 1] = '\0';
 				}
 			}
+			*/
 			printf("\nEnter description for task being added\n");
 			printf(">>>  ");
 			fgets(description, MAX_TITLE_LENGTH, stdin);
+			char descripyion[MAX_TITLE_LENGTH + 1] = { 0 };
+			fgets(description, MAX_TITLE_LENGTH, stdin);
+			if (strcmp(description, "\n") == 0)
+			{
+				strcpy(title, "No description.");
+			}
+			/*
 			if (strlen(description) > 0)
 			{
 				if (description[strlen(description) - 1] == '\n')
 				{
 					description[strlen(description) - 1] = '\0';
 				}
-			}
+			}*/
+
 			//Add task function
 			head = addTask(head, titleId, title, description);
 		}
@@ -133,6 +171,7 @@ struct Task* addTask(struct Task* head, int inputTaskId, char inputTitle[], char
 
 	newTask->taskId = inputTaskId;
 	strcpy(newTask->title, inputTitle);
+
 	strcpy(newTask->description, inputDescription);
 	newTask->nextTask = NULL;
 	//2. Asking for a user input, checking input and assginming to a new task
@@ -245,14 +284,16 @@ int getNum(void)
 	your others */
 	/* use fgets() to get a string from the keyboard */
 	fgets(record, 121, stdin);
+	
 	/* extract the number from the string; sscanf() returns a number
 	* corresponding with the number of items it found in the string */
 	if (sscanf(record, "%d", &number) != 1)
 	{
 		/* if the user did not enter a number recognizable by
 		* the system, set number to -1 */
-		number = -1;
+		number = NO_VALID_DIGIT;
 	}
 	return number;
 }
 /*end getNum()*/
+
