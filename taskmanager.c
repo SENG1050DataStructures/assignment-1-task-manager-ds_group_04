@@ -33,7 +33,7 @@ int main(void)
 		printf("\nPress 1 to Add Task \n");
 		printf("Press 2 to Delete Task \n");
 		printf("Press 3 to Find Task \n");
-		printf("Press 4 to Pelete Tasks \n");
+		printf("Press 4 to Print Tasks \n");
 		printf("Press 5 to Exit \n");
 		printf(">>>  ");
 
@@ -145,7 +145,7 @@ struct Task* addTask(struct Task* head, int inputTaskId, char inputTitle[], char
 
 
 /*
-*Function: AddTask()
+*Function: deleteTask()
 * Description : This function will take the user input for taskId, taks title
 *				task description, allocate dynamic memory for a new task and assign
 *				input values as data members of the new task.
