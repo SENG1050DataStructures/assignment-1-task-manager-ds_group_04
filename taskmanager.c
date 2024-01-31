@@ -25,10 +25,12 @@ int getNum(void);
 struct Task* addTask(struct Task* head, int inputTaskId, char inputTitle[], char inputDescription[]);
 int deleteTask(struct Task* head, int inputTaskId);
 struct Task* FindTaskByIndex(struct Task* head, int index);
+void overwriteNewLine(char* input);
 
 int main(void)
 {
 	struct Task* head = NULL;
+
 	int option = 0;
 	//Prompting a user for an input:
 	while (option != 5)
@@ -66,49 +68,30 @@ int main(void)
 					titleId = inputId;
 				}
 
-			}					
-
+			}
+			//Prompting user for title input:
 			printf("\nEnter title for task being added\n");
 			printf(">>>  ");
-			char fieldName[MAX_TITLE_LENGTH + 1] = { 0 };
 			fgets(title, MAX_TITLE_LENGTH, stdin);
 			if (strcmp(title, "\n") == 0)
 			{
-				strcpy(title, "No title.");
+				strcpy(title, "NO TITLE");
 			}
-			/*
-			if (strcmp(title, "\n") == 0)
-			{
-				strcpy(title, "No description");
-			}
-			if (strlen(title) > 0)
-			{
-				if (title[strlen(title) - 1] == '\n')
-				{
-					title[strlen(title) - 1] = '\0';
-				}
-			}
-			*/
+			overwriteNewLine(title);
+
+			//Prompting user for description input
 			printf("\nEnter description for task being added\n");
 			printf(">>>  ");
 			fgets(description, MAX_TITLE_LENGTH, stdin);
-			char descripyion[MAX_TITLE_LENGTH + 1] = { 0 };
-			fgets(description, MAX_TITLE_LENGTH, stdin);
 			if (strcmp(description, "\n") == 0)
 			{
-				strcpy(title, "No description.");
+				strcpy(description, "NO DESCRIPTION");
 			}
-			/*
-			if (strlen(description) > 0)
-			{
-				if (description[strlen(description) - 1] == '\n')
-				{
-					description[strlen(description) - 1] = '\0';
-				}
-			}*/
+			overwriteNewLine(description);
 
 			//Add task function
 			head = addTask(head, titleId, title, description);
+			
 		}
 		else if (option == 2)
 		{
@@ -117,6 +100,7 @@ int main(void)
 			int taskToDelete = getNum();
 			//Delete task function
 			int status = deleteTask(head, taskToDelete);
+			
 			if (status == 0)
 			{
 				printf("\nTask with Id %d was deleted\n", taskToDelete);
@@ -150,7 +134,7 @@ int main(void)
 }
 
 /*
-*Function: AddTask()
+*Function: addTask()
 * Description : This function will take the user input for taskId, takes title
 *				task description, allocate dynamic memory for a new task and assign
 *				input values as data members of the new task.
@@ -161,26 +145,40 @@ int main(void)
 struct Task* addTask(struct Task* head, int inputTaskId, char inputTitle[], char inputDescription[])
 {
 
-	//1. Create a new student dynamic memory
+	//1. Create a new task dynamic memory
 	struct Task* newTask = (struct Task*)malloc(sizeof(struct Task));
 	if (newTask == NULL)
 	{
 		printf("ERROR: No memory.\n");
 		exit(EXIT_FAILURE);
 	}
-
 	newTask->taskId = inputTaskId;
 	strcpy(newTask->title, inputTitle);
-
 	strcpy(newTask->description, inputDescription);
 	newTask->nextTask = NULL;
-	//2. Asking for a user input, checking input and assginming to a new task
-	//3. Checking for double index
-	//4. Creating a sorted list
 
-	return newTask;
+	//2. Creating a sorted list
+	if (head == NULL || head->taskId >= inputTaskId)
+	{
+		newTask->nextTask = head;
+		head = newTask;
+	}	
+	else
+	{
+		struct Task* current = head;
+		while (current->nextTask != NULL && current->nextTask->taskId < inputTaskId)
+		{
+			current = current->nextTask;
+
+		}
+
+		newTask->nextTask = current->nextTask;
+		current->nextTask = newTask;
+	}
+
+	return head;
 }
-/*end AddTask()*/
+/*end addTask()*/
 
 
 /*
@@ -266,7 +264,7 @@ int deleteTask(struct Task* head, int inputTaskId)
 		}
 		else
 		{
-			
+
 			//3.Iterate over the linked list until the task coming up is the task we want to delete
 			while (1)
 			{
@@ -315,23 +313,34 @@ int deleteTask(struct Task* head, int inputTaskId)
 
 int getNum(void)
 {
-	/* we will see in a later lecture how we can improve this code */
-	char record[121] = { 0 }; /* record stores the string */
+	char record[121] = { 0 };
 	int number = 0;
-	/* NOTE to student: indent and brace this function consistent with
-	your others */
-	/* use fgets() to get a string from the keyboard */
 	fgets(record, 121, stdin);
-	
-	/* extract the number from the string; sscanf() returns a number
-	* corresponding with the number of items it found in the string */
+
 	if (sscanf(record, "%d", &number) != 1)
 	{
-		/* if the user did not enter a number recognizable by
-		* the system, set number to -1 */
 		number = NO_VALID_DIGIT;
 	}
 	return number;
 }
 /*end getNum()*/
 
+/*
+* Function: void overwriteNewLine()
+* Description : Function takes a string and overwrites and new line character with a null character
+*				for further string comparison.
+* Parameters : char*
+* Returns : returns void.
+*/
+void overwriteNewLine(char* input)
+{
+	size_t lengthOfInput = strlen(input);
+	int i = 0;
+	for (i = 0; i < lengthOfInput; i++) {
+		if (input[i] == '\n')
+		{
+			input[i] = '\0';
+		}
+	}
+}
+/*end overwriteNewLine()*/
