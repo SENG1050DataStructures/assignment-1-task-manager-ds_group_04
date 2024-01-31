@@ -24,7 +24,7 @@ struct Task
 int getNum(void);
 struct Task* addTask(struct Task* head, int inputTaskId, char inputTitle[], char inputDescription[]);
 int deleteTask(struct Task* head, int inputTaskId);
-
+struct Task* FindTaskByIndex(struct Task* head, int index);
 
 int main(void)
 {
@@ -181,6 +181,44 @@ struct Task* addTask(struct Task* head, int inputTaskId, char inputTitle[], char
 	return newTask;
 }
 /*end AddTask()*/
+
+
+/*
+*Function: FindTaskByIndex()
+* Description : This function has been created to search for a task within a linked 
+* list of tasks based on its index (position) within the list. First, it initializes 
+* a pointer current to the head of the linked list (head). Second, it initializes a variable
+* “count” to keep track of the current position in the linked list. Third, it enters a while 
+* loop that iterates through the linked list until either the end of the list (current becomes NULL)
+* or the desired index (count) is reached. Next, into the loop: If the current count matches the 
+* specified index, it means the desired task has been found, so it returns a pointer to that task 
+* “current”. On the other hand, if the index hasn't been reached yet, it increments the count and 
+* moves “current” to the next task in the list (current->nextTask). Finally, if the loop terminates 
+* without finding the task (because the list is empty or the index is out of bounds), it returns NULL 
+* to indicate that the task was not found.
+* Parameters : struct Task* head, int index
+* Returns : struct Task*
+*/
+
+
+
+struct Task* FindTaskByIndex(struct Task* head, int index)
+{
+	struct Task* current = head;
+	int count = 0;
+
+	while (current != NULL)
+	{
+		if (count == index)
+		{
+			return current;
+		}
+		count++;
+		current = current->nextTask;
+	}
+	return NULL; //index out of limits
+}
+
 
 
 /*
