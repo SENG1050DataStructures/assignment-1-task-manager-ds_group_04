@@ -1,12 +1,13 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#pragma warning(disable: 4996) 
 
-
+//Constants:
 #define MAX_TITLE_LENGTH 40
 #define MAX_DESCRIPTION_LENGTH 200
 
-//prototypes
-int getNum(void);
-
+//Data types:
 struct Task
 {
 	int taskId;
@@ -15,8 +16,14 @@ struct Task
 	struct Task* nextTask;
 };
 
+//Prototypes
+int getNum(void);
+struct Task* addTask(struct Task* head, int inputTaskId, char inputTitle[], char inputDescription[]);
+
+
 int main(void)
 {
+	struct Task* head = NULL;
 	int option = 0;
 	//Prompting a user for an input:
 	while (option != 5)
@@ -34,8 +41,7 @@ int main(void)
 		if (option == 1)
 		{
 			//Add task function
-			//Olga will be working on it maybe on Wednesday
-			printf("hello");
+			addTask(head, 1,"to do", "description");
 		}
 		else if (option == 2)
 		{
@@ -55,7 +61,7 @@ int main(void)
 		}
 		else
 		{
-			printf("Invalid input. Please type in a valid option.\n");
+			printf("ERROR: Invalid input. Please type in a valid option.\n");
 			
 		}
 	}
@@ -64,7 +70,37 @@ int main(void)
 	return 0;
 }
 
+/*
+*Function: AddTask()
+* Description : This function will take the user input for taskId, taks title
+*				task description, allocate dynamic memory for a new task and assign
+*				input values as data members of the new task.
+* Parameters :  struct Task* head, int taskId, char title[], char description[]
+* Returns : returns struct
+*/
 
+struct Task* addTask(struct Task* head, int inputTaskId, char inputTitle[], char inputDescription[])
+{
+	
+	//1. Create a new student dynamic memory
+	struct Task* newTask = (struct Task*)malloc(sizeof(struct Task));
+	if (newTask == NULL)
+	{
+		printf("ERROR: No memory.\n");
+		exit(EXIT_FAILURE);
+	}
+
+	newTask->taskId = inputTaskId;
+	strcpy(newTask->title, inputTitle);
+	strcpy(newTask->description, inputDescription);
+	newTask->nextTask = NULL;
+	//2. Asking for a user input, checking input and assginming to a new task
+	//3. Checking for double index
+	//4. Creating a sorted list
+	
+	return newTask;
+}
+/*end AddTask()*/
 
 /*
 *Function: getNum()
