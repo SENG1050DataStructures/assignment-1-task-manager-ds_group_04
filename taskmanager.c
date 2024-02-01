@@ -96,20 +96,30 @@ int main(void)
 		}
 		else if (option == 2)
 		{
-			printf("\nEnter Task Id number to delete\n");
+			printf("\nEnter digital ID for task being deleted\n");
 			printf(">>>  ");
 			int taskToDelete = getNum();
-			//Delete task function
-			int status = deleteTask(&head, taskToDelete);
-			
-			if (status == 0)
+
+			if (taskToDelete == NO_VALID_DIGIT)
 			{
-				printf("\nTask with Id %d was deleted\n", taskToDelete);
+				printf("No valid ID was entered.\n");
 			}
 			else
 			{
-				printf("\nUnable to find task with Id %d to perform deletion\n", taskToDelete);
+				//Delete task function
+				int status = deleteTask(&head, taskToDelete);
+
+				if (status == 0)
+				{
+					printf("\nTask with Id %d was deleted\n", taskToDelete);
+				}
+				else
+				{
+					printf("\nUnable to find task with Id %d to perform deletion\n", taskToDelete);
+				}
 			}
+				
+			
 		}
 		else if (option == 3)
 		{
@@ -267,7 +277,7 @@ int deleteTask(struct Task** head, int inputTaskId)
 		{
 
 			//3.Iterate over the linked list until the task coming up is the task we want to delete
-			while (1)
+			while (1)//While loop is always true, breaks out of loop if the next task doesn't exist or we deleted task matching inputTaskId
 			{
 				if (current->nextTask == NULL)
 				{
@@ -297,7 +307,7 @@ int deleteTask(struct Task** head, int inputTaskId)
 				}
 
 				current = current->nextTask;//Iterate to next task
-				if (current == NULL) break;//We were unable to find the taskId break out of while loop
+				
 			}
 		}
 	}
