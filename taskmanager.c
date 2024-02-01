@@ -23,7 +23,7 @@ struct Task
 //Prototypes
 int getNum(void);
 struct Task* addTask(struct Task* head, int inputTaskId, char inputTitle[], char inputDescription[]);
-int deleteTask(struct Task* head, int inputTaskId);
+int deleteTask(struct Task** head, int inputTaskId);
 struct Task* FindTaskByIndex(struct Task* head, int index);
 void overwriteNewLine(char* input);
 void printTask(struct Task* head);
@@ -100,7 +100,7 @@ int main(void)
 			printf(">>>  ");
 			int taskToDelete = getNum();
 			//Delete task function
-			int status = deleteTask(head, taskToDelete);
+			int status = deleteTask(&head, taskToDelete);
 			
 			if (status == 0)
 			{
@@ -225,18 +225,18 @@ struct Task* FindTaskByIndex(struct Task* head, int index)
 * Description : This function will take the user input for taskId, taks title
 *				task description, allocate dynamic memory for a new task and assign
 *				input values as data members of the new task.
-* Parameters :  struct Task* head -points to start of the linked list
+* Parameters :  struct Task** head - is a pointer to pointer of the start of the linked list
 				int taskId - the task we are deleting
 * Returns : returns int 0=successfully deleted task with given taskId
 *						1=unable to delete task with the given taskId
 */
 
-int deleteTask(struct Task* head, int inputTaskId)
+int deleteTask(struct Task** head, int inputTaskId)
 {
 
 	int returnStatus = ID_NOT_FOUND_YET;//Set status to not found yet to indicate nothing deleted yet
 	//1. Set current task to head (start of linked list)
-	struct Task* current = head;
+	struct Task* current = *head;
 
 	//Before starting make sure head is not NULL(this means nothing in list)
 	if (current != NULL)
@@ -251,13 +251,13 @@ int deleteTask(struct Task* head, int inputTaskId)
 			{
 				//Set new head pointer value since we are
 				//about to delete current head pointer
-				head = current->nextTask;
+				*head = current->nextTask;
 			}
 			else
 			{
 				//There is no task after current and current is head. So there is nothing
 				//left in list after deletion.
-				head = NULL;
+				*head = NULL;
 			}
 			free(current);//Delete the task
 			returnStatus = ID_FOUND;//We deleted the task with the given inputTaskId
