@@ -26,6 +26,7 @@ struct Task* addTask(struct Task* head, int inputTaskId, char inputTitle[], char
 int deleteTask(struct Task* head, int inputTaskId);
 struct Task* FindTaskByIndex(struct Task* head, int index);
 void overwriteNewLine(char* input);
+void printTask(struct Task* head);
 
 int main(void)
 {
@@ -116,7 +117,7 @@ int main(void)
 		}
 		else if (option == 4)
 		{
-			//Print tasks logic
+			printTask(head);
 		}
 		else if (option == 5)
 		{
@@ -304,11 +305,30 @@ int deleteTask(struct Task* head, int inputTaskId)
 }
 /*end deleteTask()*/
 
+
+/*
+*Function: printTask()
+* Description : This function prints the details of each task in the linked list
+* Parameters :  struct Task* head -points to start of the linked list
+* Returns : No return value
+*/
+void printTask(struct Task* head) 
+{
+	struct Task* current = head;
+	while (current != NULL) {
+		printf("TaskId: %d, Title: %s, Description: %s\n", current->taskId, current->title, current->description);
+		printf("-------------\n");
+		current = current->nextTask;
+	}
+}
+
+/*end printTask()*/
+
 /*
 *Function: getNum()
-*Description: This function will take the user input, extract the number from the string and return a number.
-*Parameters: no parameters.
-*Returns: result is stored in the variable int number.
+*Description : This function will take the user input, extract the number from the string and return a number.
+*Parameters  : no parameters.
+*Returns     : result is stored in the variable int number.
 */
 
 int getNum(void)
