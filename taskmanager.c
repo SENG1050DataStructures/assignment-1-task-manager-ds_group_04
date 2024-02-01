@@ -1,3 +1,13 @@
+/*
+* FILE : taskmanager.c
+* PROJECT : SENG1050 - Group Assignment #1
+* PROGRAMMER(S) : Mezin Olha, Restivo Tino, Reyes Melissa, Rojas Brayan
+* FIRST VERSION : 2024-01-31
+* DESCRIPTION : This file contains the logic for the console-based task management system,
+*				using linked lists and structs with dynamic memory allocation.
+*/
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -140,7 +150,6 @@ int main(void)
 		}
 	}
 
-
 	return 0;
 }
 
@@ -191,7 +200,6 @@ struct Task* addTask(struct Task* head, int inputTaskId, char inputTitle[], char
 }
 /*end addTask()*/
 
-
 /*
 *Function: FindTaskByIndex()
 * Description : This function has been created to search for a task within a linked 
@@ -209,8 +217,6 @@ struct Task* addTask(struct Task* head, int inputTaskId, char inputTitle[], char
 * Returns : struct Task*
 */
 
-
-
 struct Task* FindTaskByIndex(struct Task* head, int index)
 {
 	struct Task* current = head;
@@ -227,8 +233,6 @@ struct Task* FindTaskByIndex(struct Task* head, int index)
 	}
 	return NULL; //index out of limits
 }
-
-
 
 /*
 *Function: deleteTask()
