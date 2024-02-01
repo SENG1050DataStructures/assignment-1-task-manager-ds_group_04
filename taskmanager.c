@@ -316,7 +316,7 @@ void printTask(struct Task* head)
 {
 	struct Task* current = head;
 	while (current != NULL) {
-		printf("TaskId: %d, Title: %s, Description: %s\n", current->taskId, current->title, current->description);
+		printf("\nTaskId: %d, Title: %s, Description: %s\n", current->taskId, current->title, current->description);
 		printf("-------------\n");
 		current = current->nextTask;
 	}
