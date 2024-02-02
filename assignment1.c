@@ -63,7 +63,7 @@ int main(void)
 			printf("\nEnter description for task being added\n");
 			printf(">>>  ");
 
-			fgets(description, MAX_TITLE_LENGTH, stdin);
+			fgets(description, MAX_DESCRIPTION_LENGTH, stdin);
 			
 			if (validateInput(description) == TEXT_WAS_TRUNCATED)
 			{
@@ -110,7 +110,11 @@ int main(void)
 		}
 		else if (option == 5)
 		{
-			break;
+			if (head != NULL)
+			{
+				freeList(head);
+			}
+			return 0;
 		}
 		else
 		{
@@ -119,10 +123,7 @@ int main(void)
 		}
 	}
 
-	if (head != NULL)
-	{
-		freeList(head);
-	}
+	
 
 	return 0;
 }
