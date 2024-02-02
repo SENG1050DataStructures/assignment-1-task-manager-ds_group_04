@@ -153,18 +153,8 @@ int main(void)
 	return 0;
 }
 
-/*
-*Function: addTask()
-* Description : This function will take the user input for taskId, takes title
-*				task description, allocate dynamic memory for a new task and assign
-*				input values as data members of the new task.
-* Parameters :  struct Task* head, int taskId, char title[], char description[]
-* Returns : returns struct
-*/
-
 struct Task* addTask(struct Task* head, int inputTaskId, char inputTitle[], char inputDescription[])
 {
-
 	//1. Create a new task dynamic memory
 	struct Task* newTask = (struct Task*)malloc(sizeof(struct Task));
 	if (newTask == NULL)
@@ -198,24 +188,7 @@ struct Task* addTask(struct Task* head, int inputTaskId, char inputTitle[], char
 
 	return head;
 }
-/*end addTask()*/
 
-/*
-*Function: FindTaskByIndex()
-* Description : This function has been created to search for a task within a linked 
-* list of tasks based on its index (position) within the list. First, it initializes 
-* a pointer current to the head of the linked list (head). Second, it initializes a variable
-* “count” to keep track of the current position in the linked list. Third, it enters a while 
-* loop that iterates through the linked list until either the end of the list (current becomes NULL)
-* or the desired index (count) is reached. Next, into the loop: If the current count matches the 
-* specified index, it means the desired task has been found, so it returns a pointer to that task 
-* “current”. On the other hand, if the index hasn't been reached yet, it increments the count and 
-* moves “current” to the next task in the list (current->nextTask). Finally, if the loop terminates 
-* without finding the task (because the list is empty or the index is out of bounds), it returns NULL 
-* to indicate that the task was not found.
-* Parameters : struct Task* head, int index
-* Returns : struct Task*
-*/
 
 struct Task* FindTaskByIndex(struct Task* head, int index)
 {
@@ -231,7 +204,7 @@ struct Task* FindTaskByIndex(struct Task* head, int index)
 		count++;
 		current = current->nextTask;
 	}
-	return NULL; //index out of limits
+	return NULL; 
 }
 
 /*
@@ -338,12 +311,6 @@ void printTask(struct Task* head)
 
 /*end printTask()*/
 
-/*
-*Function: getNum()
-*Description : This function will take the user input, extract the number from the string and return a number.
-*Parameters  : no parameters.
-*Returns     : result is stored in the variable int number.
-*/
 
 int getNum(void)
 {
@@ -357,15 +324,7 @@ int getNum(void)
 	}
 	return number;
 }
-/*end getNum()*/
 
-/*
-* Function: void overwriteNewLine()
-* Description : Function takes a string and overwrites and new line character with a null character
-*				for further string comparison.
-* Parameters : char*
-* Returns : returns void.
-*/
 void overwriteNewLine(char* input)
 {
 	size_t lengthOfInput = strlen(input);
@@ -377,4 +336,4 @@ void overwriteNewLine(char* input)
 		}
 	}
 }
-/*end overwriteNewLine()*/
+
