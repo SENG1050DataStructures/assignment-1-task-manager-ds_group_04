@@ -13,6 +13,8 @@
 #define NO_VALID_DIGIT -1
 #define DUPLICATE -2
 #define MAX_TASKS_NUMBER 500
+#define TEXT_WAS_NOT_TRUNCATED 0
+#define TEXT_WAS_TRUNCATED 1
 
 //Data types:
 struct Task
@@ -28,6 +30,7 @@ int getNum(void);
 struct Task* addTask(struct Task* head, int inputTaskId, char inputTitle[], char inputDescription[]);
 int deleteTask(struct Task** head, int inputTaskId);
 struct Task* FindTaskByIndex(struct Task* head, int index);
-void validateInput(char* input);
+int validateInput(char* input);
 void printTask(struct Task* head);
 int checkForDuplicate(int array[], int* position, int input);
+void FreeList(struct Student* head);

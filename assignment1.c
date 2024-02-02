@@ -55,13 +55,20 @@ int main(void)
 
 			printf(">>>  ");
 			fgets(title, MAX_TITLE_LENGTH, stdin);
-			validateInput(title);
+			if (validateInput(title) == TEXT_WAS_TRUNCATED)
+			{
+				printf("\nText was truncated to...%s\n",title);
+			}
 
 			printf("\nEnter description for task being added\n");
 			printf(">>>  ");
 
 			fgets(description, MAX_TITLE_LENGTH, stdin);
-			validateInput(description);
+			
+			if (validateInput(description) == TEXT_WAS_TRUNCATED)
+			{
+				printf("\nText was truncated to...%s\n", description);
+			}
 
 			head = addTask(head, taskID, title, description);
 
@@ -103,13 +110,18 @@ int main(void)
 		}
 		else if (option == 5)
 		{
-			return 0;
+			break;
 		}
 		else
 		{
 			printf("ERROR: Invalid input. Please type in a valid option.\n");
 
 		}
+	}
+
+	if (head != NULL)
+	{
+		freeList(head);
 	}
 
 	return 0;
