@@ -18,5 +18,13 @@
     <ClCompile Include="taskmanager.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="assignment1.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="taskmanager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
