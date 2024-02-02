@@ -1,7 +1,7 @@
 /*
 * FILE : taskmanager.c
 * PROJECT : SENG1050 - Group Assignment #1
-* PROGRAMMER(S) : Mezin Olha, Restivo Tino, Reyes Melissa, Rojas Brayan
+* PROGRAMMER(S) : Mezin Olha, Restivo Tino, Reyes Melissa
 * FIRST VERSION : 2024-01-31
 * DESCRIPTION : This file contains the logic for the console-based task management system,
 *				using linked lists and structs with dynamic memory allocation.
@@ -20,6 +20,8 @@
 #define ID_FOUND 0
 #define ID_NOT_FOUND_YET 1
 #define NO_VALID_DIGIT -1
+#define DUPLICATE -2
+#define MAX_TASKS_NUMBER 500
 
 //Data types:
 struct Task
@@ -35,15 +37,18 @@ int getNum(void);
 struct Task* addTask(struct Task* head, int inputTaskId, char inputTitle[], char inputDescription[]);
 int deleteTask(struct Task** head, int inputTaskId);
 struct Task* FindTaskByIndex(struct Task* head, int index);
-void overwriteNewLine(char* input);
+void validateInput(char* input);
 void printTask(struct Task* head);
+int checkForDuplicate(int array[], int* position, int input);
 
 int main(void)
 {
 	struct Task* head = NULL;
 
 	int option = 0;
-	//Prompting a user for an input:
+	int arrayOfIDs[MAX_TASKS_NUMBER] = { 0 };
+	int currentElement = 0;
+
 	while (option != 5)
 	{
 		printf("\nPress 1 to Add Task \n");
@@ -53,55 +58,52 @@ int main(void)
 		printf("Press 5 to Exit \n");
 		printf(">>>  ");
 
-		// Storing user input into option variable:
-		option = getNum();
+		option = getNum();		
 
 		if (option == 1)
 		{
-
 			char title[MAX_TITLE_LENGTH + 1] = { 0 };
 			char description[MAX_DESCRIPTION_LENGTH + 1] = { 0 };
-			int titleId = NO_VALID_DIGIT;
-
-			while (titleId < 0)
+			int taskID = NO_VALID_DIGIT;
+			
+			while (taskID < 0)
 			{
 				int inputId = 0;
 				printf("\nEnter digital ID for task being added\n");
 				printf(">>>  ");
 				inputId = getNum();
 
-				if (inputId == NO_VALID_DIGIT)
+				if (inputId == NO_VALID_DIGIT || inputId == 0)
 				{
 					printf("No valid ID was entered.\n");
 				}
 				else
 				{
-					titleId = inputId;
+					int duplicated = checkForDuplicate(arrayOfIDs, &currentElement, inputId);
+					if (duplicated == DUPLICATE)
+					{
+						printf("\n ID %d already exists.\n", inputId);
+					
+					}
+					else
+					{
+						taskID = inputId;
+					}					
 				}
-
-			}
-			//Prompting user for title input:
+			}			
 			printf("\nEnter title for task being added\n");
+
 			printf(">>>  ");
 			fgets(title, MAX_TITLE_LENGTH, stdin);
-			if (strcmp(title, "\n") == 0)
-			{
-				strcpy(title, "NO TITLE");
-			}
-			overwriteNewLine(title);
+			validateInput(title);
 
-			//Prompting user for description input
 			printf("\nEnter description for task being added\n");
 			printf(">>>  ");
-			fgets(description, MAX_TITLE_LENGTH, stdin);
-			if (strcmp(description, "\n") == 0)
-			{
-				strcpy(description, "NO DESCRIPTION");
-			}
-			overwriteNewLine(description);
 
-			//Add task function
-			head = addTask(head, titleId, title, description);
+			fgets(description, MAX_TITLE_LENGTH, stdin);			
+			validateInput(description);
+
+			head = addTask(head, taskID, title, description);
 			
 		}
 		else if (option == 2)
@@ -168,7 +170,7 @@ struct Task* addTask(struct Task* head, int inputTaskId, char inputTitle[], char
 	newTask->nextTask = NULL;
 
 	//2. Creating a sorted list
-	if (head == NULL || head->taskId >= inputTaskId)
+	if (head == NULL || head->taskId > inputTaskId)
 	{
 		newTask->nextTask = head;
 		head = newTask;
@@ -325,15 +327,49 @@ int getNum(void)
 	return number;
 }
 
-void overwriteNewLine(char* input)
+void validateInput(char* input)
 {
-	size_t lengthOfInput = strlen(input);
-	int i = 0;
-	for (i = 0; i < lengthOfInput; i++) {
-		if (input[i] == '\n')
+	if (strcmp(input, "\n") == 0)
+	{
+		strcpy(input, "NO TITLE");
+	}
+	else
+	{
+		size_t lengthOfInput = strlen(input);
+		int i = 0;
+		for (i = 0; i < lengthOfInput; i++) {
+			if (input[i] == '\n')
+			{
+				input[i] = '\0';
+			}
+		}
+	}	
+}
+
+int checkForDuplicate(int array[], int* position, int input)
+{
+	for (int i = 0; i < MAX_TASKS_NUMBER; i++)
+	{
+		if (array[i] == input)
 		{
-			input[i] = '\0';
+			return DUPLICATE;
 		}
 	}
+	
+	if (*position == 0)
+	{
+		array[0] = input;
+		*position += 1;
+		return *position;
+	}
+	else
+	{
+		array[*position] = input;
+		*position += 1;
+		return *position;
+	}
+					
+		
+	
 }
 
