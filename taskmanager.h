@@ -33,4 +33,4 @@ struct Task* FindTaskByIndex(struct Task* head, int index);
 int validateInput(char* input);
 void printTask(struct Task* head);
 int checkForDuplicate(int array[], int* position, int input);
-void FreeList(struct Student* head);
+void freeList(struct Student* head);
