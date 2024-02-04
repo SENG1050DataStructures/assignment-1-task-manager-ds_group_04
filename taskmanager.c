@@ -133,24 +133,24 @@ int deleteTask(struct Task** head, int inputTaskId)
 }
 
 
-
-/*
-*Function: printTask()
-* Description : This function prints the details of each task in the linked list
-* Parameters :  struct Task* head -points to start of the linked list
-* Returns : No return value
-*/
-void printTask(struct Task* head) 
+void printTask(struct Task* head)
 {
 	struct Task* current = head;
-	while (current != NULL) {
-		printf("\nTaskId: %d, Title: %s, Description: %s\n", current->taskId, current->title, current->description);
-		printf("-------------\n");
-		current = current->nextTask;
+
+	if (current != NULL)
+	{
+		while (current != NULL)
+		{
+			printf("\nTaskId: %d\nTitle: %s\nDescription: %s\n\n", current->taskId, current->title, current->description);
+			current = current->nextTask;
+		}
+	}
+	else
+	{
+		printf("No tasks found\n");
 	}
 }
 
-/*end printTask()*/
 
 
 int getNum(void)
@@ -237,8 +237,6 @@ int checkForDuplicate(int array[], int* position, int input)
 		
 	
 }
-
-
 
 void freeList(struct Task* head)
 {

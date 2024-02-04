@@ -102,7 +102,28 @@ int main(void)
 		}
 		else if (option == 3)
 		{
-			//Find tasks logic
+			printf("\nEnter the index of the task you want to find\n");
+			printf(">>>  ");
+			int indexToFind = getNum();
+
+			if (indexToFind < 0)
+			{
+				printf("Invalid index entered.\n");
+			}
+			else
+			{
+				struct Task* foundTask = FindTaskByIndex(head, indexToFind);
+
+				if (foundTask != NULL)
+				{
+					printf("\nTask found at index %d:\n", indexToFind);
+					printf("TaskId: %d\nTitle: %s\nDescription: %s\n", foundTask->taskId, foundTask->title, foundTask->description);
+				}
+				else
+				{
+					printf("\nTask not found at index %d.\n", indexToFind);
+				}
+			}
 		}
 		else if (option == 4)
 		{
