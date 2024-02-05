@@ -47,7 +47,7 @@ struct Task* addTask(struct Task* head, int inputTaskId, char inputTitle[], char
 }
 
 
-struct Task* FindTaskByIndex(struct Task* head, int index)
+struct Task* findTaskByIndex(struct Task* head, int index)
 {
 	struct Task* current = head;
 	int count = 0;

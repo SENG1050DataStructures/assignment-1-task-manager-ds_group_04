@@ -29,7 +29,7 @@ struct Task
 int getNum(void);
 struct Task* addTask(struct Task* head, int inputTaskId, char inputTitle[], char inputDescription[]);
 int deleteTask(struct Task** head, int inputTaskId);
-struct Task* FindTaskByIndex(struct Task* head, int index);
+struct Task* findTaskByIndex(struct Task* head, int index);
 int validateInput(char* input);
 void printTask(struct Task* head);
 int checkForDuplicate(int array[], int* position, int input);

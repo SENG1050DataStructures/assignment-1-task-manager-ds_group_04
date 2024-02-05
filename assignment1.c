@@ -112,7 +112,7 @@ int main(void)
 			}
 			else
 			{
-				struct Task* foundTask = FindTaskByIndex(head, indexToFind);
+				struct Task* foundTask = findTaskByIndex(head, indexToFind);
 
 				if (foundTask != NULL)
 				{
