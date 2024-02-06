@@ -4,6 +4,7 @@
 #include <string.h>
 
 #pragma warning(disable: 4996) 
+#pragma once
 
 //Constants:
 #define MAX_TITLE_LENGTH 40 
@@ -12,7 +13,7 @@
 #define ID_NOT_FOUND_YET 1
 #define NO_VALID_DIGIT -1
 #define DUPLICATE -2
-#define MAX_TASKS_NUMBER 500
+#define MAX_TASKS_NUMBER 50
 #define TEXT_WAS_NOT_TRUNCATED 0
 #define TEXT_WAS_TRUNCATED 1
 
@@ -33,4 +34,4 @@ struct Task* findTaskByIndex(struct Task* head, int index);
 int validateInput(char* input);
 void printTasks(struct Task* head);
 int checkForDuplicate(int array[], int* position, int input);
-void freeList(struct Student* head);
+void freeList(struct Task* head);

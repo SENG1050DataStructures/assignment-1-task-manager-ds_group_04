@@ -69,8 +69,8 @@ int deleteTask(struct Task** head, int inputTaskId)
 {
 
 	int returnStatus = ID_NOT_FOUND_YET;
-	struct Task* current = *head;
-
+	struct Task* current = *head; //
+	//struct Task* current = *head; 
 	
 	if (current != NULL)
 	{
@@ -94,9 +94,7 @@ int deleteTask(struct Task** head, int inputTaskId)
 
 		}
 		else
-		{
-
-			
+		{			
 			while (1)
 			{
 				if (current->nextTask == NULL)
@@ -172,7 +170,7 @@ int validateInput(char* input)
 	int warningIfTextTruncated = TEXT_WAS_NOT_TRUNCATED;
 	if (strcmp(input, "\n") == 0)
 	{
-		strcpy(input, "NO TITLE");
+		strcpy(input, "NO INPUT");
 	}
 	else
 	{
@@ -196,6 +194,7 @@ int validateInput(char* input)
 		//If text wasn't truncated we should have found the line break
 		//empty out the stdin buffer
 		//so fgets doesn't fill next line of text if user entered too much in text
+
 		while (1)
 		{
 			char tempBuffer[5] = { 0 };
@@ -233,14 +232,10 @@ int checkForDuplicate(int array[], int* position, int input)
 		*position += 1;
 		return *position;
 	}
-					
-		
-	
 }
 
 void freeList(struct Task* head)
 {
-
 	struct Task* current = head;
 	struct Task* tempNode;
 

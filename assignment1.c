@@ -97,8 +97,6 @@ int main(void)
 					printf("\nUnable to find task with Id %d to perform deletion\n", taskToDelete);
 				}
 			}
-
-
 		}
 		else if (option == 3)
 		{
@@ -142,9 +140,7 @@ int main(void)
 			printf("ERROR: Invalid input. Please type in a valid option.\n");
 
 		}
-	}
-
-	
+	}	
 
 	return 0;
 }
