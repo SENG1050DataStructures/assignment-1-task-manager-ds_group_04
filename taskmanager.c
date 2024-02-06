@@ -133,7 +133,7 @@ int deleteTask(struct Task** head, int inputTaskId)
 }
 
 
-void printTask(struct Task* head)
+void printTasks(struct Task* head)
 {
 	struct Task* current = head;
 

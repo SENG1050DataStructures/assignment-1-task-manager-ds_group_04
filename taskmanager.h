@@ -31,6 +31,6 @@ struct Task* addTask(struct Task* head, int inputTaskId, char inputTitle[], char
 int deleteTask(struct Task** head, int inputTaskId);
 struct Task* findTaskByIndex(struct Task* head, int index);
 int validateInput(char* input);
-void printTask(struct Task* head);
+void printTasks(struct Task* head);
 int checkForDuplicate(int array[], int* position, int input);
 void freeList(struct Student* head);

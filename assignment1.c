@@ -127,7 +127,7 @@ int main(void)
 		}
 		else if (option == 4)
 		{
-			printTask(head);
+			printTasks(head);
 		}
 		else if (option == 5)
 		{
