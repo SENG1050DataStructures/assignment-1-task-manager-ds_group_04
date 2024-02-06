@@ -1,3 +1,11 @@
+/*
+* FILE : taskmanager.h
+* PROJECT : SENG1050 - Group Assignment #1 Console Based Task Manager
+* PROGRAMMERS : Olha Mezin, Tino Restivo, Melissa Reyes
+* FIRST VERSION : 2024-01-31
+* DESCRIPTION : This file contains the constants, data types, and prototypes that
+*				are used for this program
+*/
 
 #include <stdio.h>
 #include <stdlib.h>

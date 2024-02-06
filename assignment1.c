@@ -1,3 +1,13 @@
+/*
+* FILE : assignment1.c
+* PROJECT : SENG1050 - Group Assignment #1 Console Based Task Manager
+* PROGRAMMERS : Olha Mezin, Tino Restivo, Melissa Reyes
+* FIRST VERSION : 2024-01-31
+* DESCRIPTION : This file contains the logic for the struct, as well as the menu that
+*				the user will use for the tasks
+*
+*/
+
 #include "taskmanager.h"
 
 

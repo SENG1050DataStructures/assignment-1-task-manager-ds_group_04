@@ -1,7 +1,7 @@
 /*
 * FILE : taskmanager.c
-* PROJECT : SENG1050 - Group Assignment #1
-* PROGRAMMER(S) : Mezin Olha, Restivo Tino, Reyes Melissa
+* PROJECT : SENG1050 - Group Assignment #1 Console Based Task Manager
+* PROGRAMMERS : Olha Mezin, Tino Restivo, Melissa Reyes 
 * FIRST VERSION : 2024-01-31
 * DESCRIPTION : This file contains the logic for the console-based task management system,
 *				using linked lists and structs with dynamic memory allocation.
