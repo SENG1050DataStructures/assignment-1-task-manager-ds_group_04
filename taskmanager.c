@@ -36,7 +36,6 @@ struct Task* addTask(struct Task* head, int inputTaskId, char inputTitle[], char
 		while (current->nextTask != NULL && current->nextTask->taskId < inputTaskId)
 		{
 			current = current->nextTask;
-
 		}
 
 		newTask->nextTask = current->nextTask;
@@ -67,31 +66,24 @@ struct Task* findTaskByIndex(struct Task* head, int index)
 
 int deleteTask(struct Task** head, int inputTaskId)
 {
-
 	int returnStatus = ID_NOT_FOUND_YET;
 	struct Task* current = *head; //
 	//struct Task* current = *head; 
 	
 	if (current != NULL)
 	{
-		
-
 		if (current->taskId == inputTaskId)
 		{
-			
 			if (current->nextTask != NULL)
 			{
-				
 				*head = current->nextTask;
 			}
 			else
 			{
-				
 				*head = NULL;
 			}
 			free(current);
 			returnStatus = ID_FOUND;
-
 		}
 		else
 		{			
@@ -108,22 +100,17 @@ int deleteTask(struct Task** head, int inputTaskId)
 					struct Task* taskToDelete = current->nextTask;
 					if (taskToDelete->nextTask != NULL)
 					{
-						
 						current->nextTask = taskToDelete->nextTask;
 					}
 					else
 					{
-						
 						current->nextTask = NULL;
 					}
-
 					free(taskToDelete);
 					returnStatus = ID_FOUND;
 					break;
 				}
-
 				current = current->nextTask;
-				
 			}
 		}
 	}

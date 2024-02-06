@@ -100,7 +100,7 @@ int main(void)
 		}
 		else if (option == 3)
 		{
-			printf("\nEnter the index of the task you want to find\n");
+			printf("\nEnter the index of the task you want to find, starting from index 0\n");
 			printf(">>>  ");
 			int indexToFind = getNum();
 
@@ -140,7 +140,9 @@ int main(void)
 			printf("ERROR: Invalid input. Please type in a valid option.\n");
 
 		}
-	}	
+	}
+
+	
 
 	return 0;
 }
