@@ -32,6 +32,6 @@ Write up for function findTaskByIndex()
 * - int index: This is a user entered parameter and represents what index we want to find
 * The return for this function is:
 * Returns: struct Task*: Returns a pointer to the node at the given index. 
-* If the index we were given is 0 then we are now done and can return
+
 
 
