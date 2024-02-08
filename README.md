@@ -34,4 +34,15 @@ Write up for function findTaskByIndex()
 * Returns: struct Task*: Returns a pointer to the node at the given index. 
 
 
+Write up for function deleteTask()
+* Description: the function type int is designed to delete a task with a specific tick ID. Function takes double pointer to struct Task, integer inputTaskID.
+* Local variables: int returnStatus to indicate if task with inputTaskID was found initiated to 1. Current pointer is set to the head of the list.
+* 1 step - If statement checks if the list is not empty to proceed.
+* 2 step - In case of current ID matches the input ID, the function checks if current is the only list element,
+* if yes - it assigns the head value to NULL and deallocates memory for the current node.
+* If the current is not the only list element, the head node is assigned to be the next task after the current, and memory for the current node is deallocated.
+* 3 step - If the current ID does not match the inputTaskID the function iterates through the list of tasks checking next to the current node for a matching ID,
+* assigning current to the next list element after each iteration. If the match is found, the memory of the matching task is deallocated, the current next element is assigned
+* to the deleted node's next element and the returnStatus is updated.
+* Function returns retutnStatus equal to 0 or 1, specifying if inputTaskID was found or not. 
 
