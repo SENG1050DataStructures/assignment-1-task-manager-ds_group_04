@@ -12,7 +12,7 @@ Write up for function addTask()
 * - char inputTitle[]: Which is the title or name of the task.
 * - char inputDescription[]: A brief description of the task.
 * The return for this function is:
-* Returns: struct Task*: Returns the updated head of the linked list after adding the new task.
+  - Returns: struct Task*: Returns the updated head of the linked list after adding the new task.
   
 
 Write up for function findTaskByIndex()
