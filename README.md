@@ -2,7 +2,7 @@
 # Assignment1
 Write-up:
 
-Write up for function addTask()
+Write up for function addTask() (written by Melissa)
 * Description: This function will add a new task to the linked list.  It takes user input for taskId, task title,
   and task description, allocates dynamic memory for a new task, and assigns the input values as data members
   of the new task. I will then add the new task into the linked list sorted based on the taskId.
@@ -15,7 +15,7 @@ Write up for function addTask()
   - Returns: struct Task*: Returns the updated head of the linked list after adding the new task.
   
 
-Write up for function findTaskByIndex()
+Write up for function findTaskByIndex() (written by Tino)
 * Description: This function will return the pointer to the task at a given index. It takes two user inputs, a pointer to the head of the linked list and a integer value for the index we are looking for.
 * We start by setting a local variable count to 0. We will use this variable to keep track of how many tasks (nodes) we have looked at, in other words what index we are at.
 * We start at the head of the linked list, we set a local variable called current to this pointer value.
@@ -34,7 +34,7 @@ Write up for function findTaskByIndex()
 * Returns: struct Task*: Returns a pointer to the node at the given index. 
 
 
-Write up for function deleteTask()
+Write up for function deleteTask() (written by Olha)
 * Description: the function type int is designed to delete a task with a specific tick ID. Function takes double pointer to struct Task, integer inputTaskID.
 * Local variables: int returnStatus to indicate if task with inputTaskID was found initiated to 1. Current pointer is set to the head of the list.
 * 1 step - If statement checks if the list is not empty to proceed.
