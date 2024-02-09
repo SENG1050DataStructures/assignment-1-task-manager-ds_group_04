@@ -1,6 +1,6 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/8xUcoGNc)
 # Assignment1
-The write-up goes here.
+Write-up:
 
 Write up for function addTask()
 * Description: This function will add a new task to the linked list.  It takes user input for taskId, task title,
