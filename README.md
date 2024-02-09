@@ -4,8 +4,8 @@ The write-up goes here.
 
 Write up for function addTask()
 * Description: This function will add a new task to the linked list.  It takes user input for taskId, task title,
-* and task description, allocates dynamic memory for a new task, and assigns the input values as data members
-* of the new task. I will then add the new task into the linked list sorted based on the taskId.
+  and task description, allocates dynamic memory for a new task, and assigns the input values as data members
+  of the new task. I will then add the new task into the linked list sorted based on the taskId.
 * The parameters for this function are:
 * - struct Task* head: which points to the start of the linked list.
 * - int inputTaskId: Which is the identifier of the task to be added.
